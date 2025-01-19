@@ -2,5 +2,5 @@ ultralytics
 streamlit
 opencv-python-headless
 roboflow
-paddleocr
 numpy
+paddleocr
