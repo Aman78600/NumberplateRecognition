@@ -1,6 +1,6 @@
 import cv2
 import pickle
-import logging
+# import logging
 import warnings
 from ultralytics import YOLO
 import numpy as np
@@ -10,7 +10,7 @@ import streamlit as st
 # Suppress specific deprecation warnings
 from cryptography.utils import CryptographyDeprecationWarning
 
-logging.getLogger('ppocr').setLevel(logging.ERROR)
+# logging.getLogger('ppocr').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 
 # Initialize models and classes
