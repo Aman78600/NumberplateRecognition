@@ -1,6 +1,5 @@
 import cv2
 import pickle
-# import logging
 import warnings
 from ultralytics import YOLO
 import numpy as np
