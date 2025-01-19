@@ -1,5 +1,6 @@
-streamlit>=1.40.2
-opencv-python-headless
 ultralytics
+streamlit
+opencv-python-headless
+roboflow
 paddleocr
 numpy
