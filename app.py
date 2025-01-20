@@ -5,11 +5,15 @@ from ultralytics import YOLO
 import numpy as np
 from paddleocr import PaddleOCR
 import streamlit as st
+import tempfile
+import logging
+import os
 
+os.PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION='python'
 # Suppress specific deprecation warnings
 from cryptography.utils import CryptographyDeprecationWarning
 
-# logging.getLogger('ppocr').setLevel(logging.ERROR)
+logging.getLogger('ppocr').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
 
 # Initialize models and classes
@@ -95,6 +99,7 @@ if input_type == "Image":
                 text_result = text_detector.detect_text(license_plate)
                 if text_result and text_result[0][0][0]:
                     x1, y1, x2, y2 = cv2.boundingRect(np.array([[0, 0], [car.shape[1], car.shape[0]]]))
+                    cv2.rectangle(result_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
                     cv2.putText(result_image, text_result[0][0][0], (x1, y1 - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
@@ -122,6 +127,7 @@ elif input_type == "Video":
                     text_result = text_detector.detect_text(license_plate)
                     if text_result and text_result[0][0][0]:
                         x1, y1, x2, y2 = cv2.boundingRect(np.array([[0, 0], [car.shape[1], car.shape[0]]]))
+                        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                         cv2.putText(frame, text_result[0][0][0], (x1, y1 - 10),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
